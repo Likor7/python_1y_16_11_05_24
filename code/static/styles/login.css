@@ -13,6 +13,7 @@ body {
 #block-auth {
   width: 370px;
   padding-block: 20px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
