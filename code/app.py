@@ -27,5 +27,12 @@ def index():
     return render_template("./index.html", **context)
 
 
+@app.route("/resume")
+def get_resume():
+    return render_template("./resume.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+print(1)
