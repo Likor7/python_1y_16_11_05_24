@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -15,8 +15,11 @@ students = [
     {"name": "Rostyslav", "gender": "male", "age": 14},
 ]
 
+# id list(email password)
+users_dict = {}
 
-@app.route("/")
+
+@app.route("/", methods=["GET"])
 def index():
     context = {
         "title": "GoIteens",
@@ -32,7 +35,26 @@ def get_resume():
     return render_template("./resume.html")
 
 
+@app.route("/users", methods=["GET"])
+def get_users():
+    return users_dict
+
+
+@app.route("/signin", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        user_email = request.form["user-email"]
+        user_password = request.form["user-password"]
+
+        print(
+            "user_email тут на бекенді отримав з фронтенд: ", user_email, user_password
+        )
+
+        users_dict.update({len(users_dict): (user_email, user_password)})
+
+        return redirect("/users")
+    return render_template("./login.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
-
-print(1)
