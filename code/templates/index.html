@@ -4,15 +4,17 @@
 
   <div class="container mt-4">
     <div class="row g-4">
-      {% for student in students %}
+      {% for student in students | sort(attribute="name") %}
       <div
         class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center"
       >
         <div class="card" style="width: 16rem">
-          <div class="card-header text-success">{{ student.name }}</div>
+          <div class="card-header text-success">
+            {{ macros.add_badge(student) }} {{ student.name | title }}
+          </div>
           <ul class="list-group list-group-flush">
             <li
-              class="list-group-item {% if student.gender == 'female' %} text-danger {% else %} text-info {% endif %}"
+              class="list-group-item {% if student.gender | lower == 'female' %} text-danger {% else %} text-info {% endif %}"
             >
               {{ student.gender }}
             </li>

@@ -7,13 +7,14 @@ subject = "Python"
 group_name = "1y_16_11_05_24"
 
 students = [
-    {"name": "Sophia", "gender": "female", "age": 15},
+    {"name": "Sophia f", "gender": "female", "age": 15},
     {"name": "Semen", "gender": "male", "age": 13},
-    {"name": "Andrii", "gender": "male", "age": 17},
+    {"name": "Illya", "gender": "male", "age": 15},
     {"name": "Vlad", "gender": "male", "age": 16},
     {"name": "Vova", "gender": "male", "age": 15},
     {"name": "Rostyslav", "gender": "male", "age": 14},
 ]
+
 
 # id list(email password)
 users_dict = {}
@@ -21,6 +22,9 @@ users_dict = {}
 
 @app.route("/", methods=["GET"])
 def index():
+    # for stud in students:
+    #     stud["name"] = stud["name"].upper()
+    # students.sort(key=lambda element: element["age"])
     context = {
         "title": "GoIteens",
         "subject": subject,
