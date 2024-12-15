@@ -42,6 +42,25 @@
     Видалити замовлення: Видаліть замовлення з таблиці orders, де товар "Keyboard" або його вартість менше 500.
     
     Видалити доставку: Видаліть запис із таблиці shippings, де статус "Pending" та клієнт із customer_id = 2.
+
+## 4.3 
+
+Додати до цієї роботи використання sqlite3 https://github.com/Likor7/python_1y_16_11_05_24/tree/classwork/theme29.
+
+Потрібно винести
+
+    students = [
+        {"name": "Sophia f", "gender": "female", "age": 15},
+        {"name": "Semen", "gender": "male", "age": 13},
+        {"name": "Illya", "gender": "male", "age": 15},
+        {"name": "Vlad", "gender": "male", "age": 16},
+        {"name": "Vova", "gender": "male", "age": 15},
+        {"name": "Rostyslav", "gender": "male", "age": 14},
+    ]
+    
+Ось це в таблицю власну.
+
+Отримавши дані з бази даних вивести на головній сторінці.
     
 ## Довідкова інформація:
 
