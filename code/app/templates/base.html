@@ -18,7 +18,8 @@
     />
   </head>
   <body>
-    {% block content %} {% endblock %}
+    {% include 'common/header.html' %} {% block content %} {% endblock %} {%
+    include 'common/footer.html' %}
 
     <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
     <script

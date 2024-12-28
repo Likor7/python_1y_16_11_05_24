@@ -7,7 +7,8 @@ class Post(db.Model):
     user_id = db.Column(
         db.Integer, db.ForeignKey("user.id"), nullable=False, unique=True
     )
-    text = db.Column(db.String, nullable=True)
-    date = db.Column(db.Date, default=datetime.now(), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    content = db.Column(db.String, nullable=True)
+    created_at = db.Column(db.Date, default=datetime.now(), nullable=False)
 
     user = db.relationship("User", back_populates="Post")
