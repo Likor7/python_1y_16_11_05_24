@@ -1,19 +1,89 @@
 <header class="header">
   <div class="logo">
     <img
+      class="non-selectable"
       src="{{ url_for('static', filename='images/logo.png') }}"
       alt="Flask logo"
     />
   </div>
   <nav class="d-flex align-items-center">
     <ul class="d-flex gap-5">
-      <li><a href="/">Головна</a></li>
-      <li><a href="/blog">Блог</a></li>
-      <li><a href="/contacts">Контакти</a></li>
+      <li>
+        <a
+          href="{{ url_for('main.index') }}"
+          class="{{ 'active' if current_page == 'main.index' else '' }}"
+        >
+          Головна
+        </a>
+      </li>
+      <li>
+        <a
+          href="{{ url_for('blog.index') }}"
+          class="{{ 'active' if current_page == 'blog.index' else '' }}"
+        >
+          Блог
+        </a>
+      </li>
+      <li>
+        <a
+          href="{{ url_for('main.contacts') }}"
+          class="{{ 'active' if current_page == 'main.contacts' else '' }}"
+        >
+          Контакти
+        </a>
+      </li>
     </ul>
   </nav>
-  <div class="auth-buttons">
-    <div class="">Sign In</div>
-    <div class="">Sign Up</div>
+  {% if current_user.is_authenticated %}
+  <div class="header-info">
+    <div>{{ current_user.name | capitalize}}</div>
+    <div class="avatar dropdown">
+      <a
+        href="#"
+        class="dropdown-toggle"
+        id="avatarDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="{{ url_for('static', filename='images/avatar-test.png')}}"
+          alt="User Avatar"
+          class="rounded-circle"
+          width="50"
+          height="50"
+        />
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="avatarDropdown"
+      >
+        <!-- <li>
+          <a class="dropdown-item" href=" url_for('auth.profile') "
+            >Profile</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" href=" url_for('auth.settings') "
+            >Settings</a
+          >
+        </li> -->
+        <!-- <li><hr class="dropdown-divider" /></li> -->
+        <li>
+          <a class="dropdown-item" href="{{ url_for('auth.signout') }}"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
+  {% else %}
+  <div class="auth-buttons">
+    <a href="{{ url_for('auth.signin') }}">
+      <div class="btn btn-outline-dark">Sign In</div>
+    </a>
+    <a href="{{ url_for('auth.signup') }}">
+      <div class="btn btn-dark custom-btn-dark">Sign Up</div>
+    </a>
+  </div>
+  {% endif %}
 </header>

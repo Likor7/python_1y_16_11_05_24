@@ -1,8 +1,9 @@
 from app import db
 from datetime import datetime
+from app.models.utils import ModelMixin
 
 
-class Post(db.Model):
+class Post(db.Model, ModelMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(
         db.Integer, db.ForeignKey("user.id"), nullable=False, unique=True
@@ -11,4 +12,4 @@ class Post(db.Model):
     content = db.Column(db.String, nullable=True)
     created_at = db.Column(db.Date, default=datetime.now(), nullable=False)
 
-    user = db.relationship("User", back_populates="Post")
+    user = db.relationship("User", back_populates="posts")
