@@ -1,1 +1,19 @@
-<header></header>
+<header class="header">
+  <div class="logo">
+    <img
+      src="{{ url_for('static', filename='images/logo.png') }}"
+      alt="Flask logo"
+    />
+  </div>
+  <nav class="d-flex align-items-center">
+    <ul class="d-flex gap-5">
+      <li><a href="/">Головна</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакти</a></li>
+    </ul>
+  </nav>
+  <div class="auth-buttons">
+    <div class="">Sign In</div>
+    <div class="">Sign Up</div>
+  </div>
+</header>
