@@ -16,7 +16,7 @@ def signin():
             login_user(user)
             flash("SignIn successful.", "success")
             return redirect(url_for("main.index"))
-        flash("Wrong username or password.", "danger")
+        flash("Wrong email or password.", "danger")
     return render_template("auth/signin.html", form=form)
 
 
@@ -42,8 +42,5 @@ def signup():
         flash("Registration successful. You are logged in.", "success")
         return redirect(url_for("main.index"))
     elif form.is_submitted():
-        for field, errors in form.errors.items():
-            for error in errors:
-                flash(f"Error in {field}: {error}", "danger")
-        # flash("The given data was invalid.", "danger")
+        flash("The given data was invalid.", "danger")
     return render_template("auth/signup.html", form=form)

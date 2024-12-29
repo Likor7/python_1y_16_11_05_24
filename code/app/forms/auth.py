@@ -8,7 +8,7 @@ from app.models import User
 class SignInForm(FlaskForm):
     user_email = StringField("Email", [DataRequired()])
     password = PasswordField("Password", [DataRequired()])
-    submit = SubmitField("SignIn")
+    submit = SubmitField("Sign In")
 
 
 class SignUpForm(FlaskForm):

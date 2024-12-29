@@ -13,9 +13,11 @@ def create_app():
 
     app = Flask(__name__)
 
+    # app.config.from_object()
+    app.config["APP_NAME"] = "Flask Blog"
+
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_bloh.db"
     app.config["SECRET_KEY"] = "Dsamdkasmdk127al32mkdm32ska$82"
-    app.config["APP_NAME"] = "Flask Blog"
     app.config["WTF_CSRF_ENABLED"] = False
 
     # Setup extensions
