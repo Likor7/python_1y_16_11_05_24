@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
-from app.forms import SignInForm, SignUpForm
+from app.forms import SignInForm, SignUpForm, ProfileForm
 from app.models import User
 
 auth_blueprint = Blueprint("auth", __name__)
@@ -44,3 +44,25 @@ def signup():
     elif form.is_submitted():
         flash("The given data was invalid.", "danger")
     return render_template("auth/signup.html", form=form)
+
+
+@auth_blueprint.route("/profile", methods=["GET", "POST"])
+def profile():
+    user: User = User.query.get(current_user.id)
+    form = ProfileForm()
+
+    if form.validate_on_submit():
+        user.name = form.name.data
+        user.surname = form.surname.data
+        user.email = form.email.data
+        user.save()
+
+        flash("Profile has been successfully updated", "info")
+        return redirect(url_for("main.index"))
+    elif form.is_submitted():
+        flash("The given data was invalid.", "danger")
+    elif request.method == "GET":
+        form.name.data = user.name
+        form.surname.data = user.surname
+        form.email.data = user.email
+    return render_template("auth/profile.html", form=form)

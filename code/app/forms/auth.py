@@ -30,3 +30,10 @@ class SignUpForm(FlaskForm):
     def validate_email(form, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError("This email is already signed up.")
+
+
+class ProfileForm(FlaskForm):
+    name = StringField("Name")
+    surname = StringField("Surname")
+    email = StringField("Email Address", [DataRequired(), Email()])
+    submit = SubmitField("Save")
