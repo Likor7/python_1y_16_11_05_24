@@ -46,9 +46,9 @@ def signup():
     return render_template("auth/signup.html", form=form)
 
 
-@auth_blueprint.route("/profile", methods=["GET", "POST"])
-def profile():
-    user: User = User.query.get(current_user.id)
+@auth_blueprint.route("/settings", methods=["GET", "POST"])
+def settings():
+    user = User.query.get(current_user.id)
     form = ProfileForm()
 
     if form.validate_on_submit():
@@ -65,4 +65,4 @@ def profile():
         form.name.data = user.name
         form.surname.data = user.surname
         form.email.data = user.email
-    return render_template("auth/profile.html", form=form)
+    return render_template("auth/settings.html", form=form)

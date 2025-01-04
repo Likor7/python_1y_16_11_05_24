@@ -78,7 +78,12 @@ a {
   gap: 1em;
   align-items: center;
 }
+
 /* Content */
+
+.alert {
+  z-index: -1 !important;
+}
 
 /* Footer */
 

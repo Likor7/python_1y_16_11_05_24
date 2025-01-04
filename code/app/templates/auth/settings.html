@@ -3,13 +3,13 @@
 <div class="container py-4">
   <div class="card w-50 mx-auto">
     <div class="card-header">
-      <h4 class="card-title">{{ current_user.username }}</h4>
+      <h4 class="card-title">{{ current_user.email | title }}</h4>
     </div>
     <div class="card-body">
       <form
         class="form"
         role="form"
-        action="{{ url_for('auth.profile') }}"
+        action="{{ url_for('auth.settings') }}"
         method="post"
       >
         {{ form.hidden_tag() }}

@@ -7,18 +7,16 @@ login_manager = LoginManager()
 db = SQLAlchemy()
 
 
-def create_app():
+def create_app(environment="development"):
+    from config import config
     from .views import main_blueprint, auth_blueprint, blog_blueprint
     from .models import User, AnonymousUser
 
     app = Flask(__name__)
 
-    # app.config.from_object()
-    app.config["APP_NAME"] = "Flask Blog"
-
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_bloh.db"
-    app.config["SECRET_KEY"] = "Dsamdkasmdk127al32mkdm32ska$82"
-    app.config["WTF_CSRF_ENABLED"] = False
+    env = environment  # Додати ще одну абстракцію
+    app.config.from_object(config[env])
+    config[env].configure(app)
 
     # Setup extensions
     db.init_app(app)
