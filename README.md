@@ -5,6 +5,5 @@
 3) Сторінка профілю (розказував у кінці заняття)
 
 <p align="center">
-	<img src="https://github.com/Likor7/python_1y_16_11_05_24/blob/theme33/homework/1.png" alt="Приклад блогу"/>
+	<img src="https://github.com/Likor7/python_1y_16_11_05_24/blob/classwork/theme33/homework/1.png" alt="Приклад блогу"/>
 </p>
-   
