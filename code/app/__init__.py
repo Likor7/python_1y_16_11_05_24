@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -14,7 +15,7 @@ def create_app(environment="development"):
 
     app = Flask(__name__)
 
-    env = environment  # Додати ще одну абстракцію
+    env = os.getenv("FLASK_ENV", environment)
     app.config.from_object(config[env])
     config[env].configure(app)
 
