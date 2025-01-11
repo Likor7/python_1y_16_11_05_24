@@ -1,0 +1,26 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="container py-4">
+  <div class="card w-75 mx-auto">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h1>{{post.title}}</h1>
+      {% if (current_user.id) and (current_user.id == post.user_id) %}
+      <div class="">
+        <a class="btn btn-dark text-white">Edit</a>
+        <a
+          href="{{url_for('blog.delete_post', post_id = post.id) }}"
+          class="btn btn-outline-dark"
+        >
+          Delete
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <p>{{post.content}}</p>
+      <p>Author: {{ post.user.name }} {{ post.user.surname }}</p>
+      <p>Create At: {{ post.created_at }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

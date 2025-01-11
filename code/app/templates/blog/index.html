@@ -2,8 +2,9 @@
 <div class="m-5">
   {% for post in posts|reverse() %}
   <div class="d-flex justify-content-between">
-    <span>{{post.title}}</span>
-    <span>{{post.content}}</span>
+    <a href="{{ url_for('blog.view_post', post_id=post.id) }}">
+      <span>{{post.title}}</span>
+    </a>
     <span>{{post.created_at}}</span>
     <span>{{post.user.name + " " + post.user.surname}}</span>
   </div>

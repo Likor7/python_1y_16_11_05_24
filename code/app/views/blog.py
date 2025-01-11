@@ -10,8 +10,8 @@ blog_blueprint = Blueprint("blog", __name__, url_prefix="/blog")
 # 1) Сторінка окремого посту
 # 2) Фото до посту
 # 3) Перекласти сайт на українську
-# 4) Редагування постів користувачем
-# 5) Сторінка котактаків
+# 4) Редагування/видалення постів користувачем !сьогодні
+# 5) Сторінка контаків
 # 6) Головна сторінка
 # 7) Емейл трохи логіки додати
 
@@ -40,3 +40,24 @@ def add_post():
     elif form.is_submitted():
         flash("The given data was invalid.", "danger")
     return render_template("blog/add_post.html", title="Створення посту", form=form)
+
+
+@blog_blueprint.route("/post/<int:post_id>", methods=["GET"])
+def view_post(post_id):
+    post = PostController.get_post_by_id(post_id)  # NoneType
+    if not post:
+        flash("Post not found")
+        return redirect(url_for("main.index"))
+    return render_template("blog/view_post.html", title=post.title, post=post)
+
+
+@blog_blueprint.route("/post/<int:post_id>", methods=["DELETE"])
+def delete_post(post_id):
+    post = PostController.get_post_by_id(post_id)
+
+    if not post or current_user.id != post.user_id:
+        flash("Not found")
+
+    PostController.delete_post(post_id)
+    flash(f"Post {[post.name]} has been deleted")
+    return redirect(url_for("blog.index"))
