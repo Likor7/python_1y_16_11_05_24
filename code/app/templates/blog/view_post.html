@@ -6,9 +6,15 @@
       <h1>{{post.title}}</h1>
       {% if (current_user.id) and (current_user.id == post.user_id) %}
       <div class="">
-        <a class="btn btn-dark text-white">Edit</a>
         <a
-          href="{{url_for('blog.delete_post', post_id = post.id) }}"
+          href="{{url_for('blog.edit_post', post_id = post.id) }}"
+          class="btn btn-dark text-white"
+        >
+          Edit
+        </a>
+        <a
+          href="#"
+          onclick="deletePost({{ post.id }})"
           class="btn btn-outline-dark"
         >
           Delete
@@ -23,4 +29,25 @@
     </div>
   </div>
 </div>
+{% endblock %} {% block scripts %}
+<script>
+  const deletePost = (postId) => {
+    fetch(`/blog/post/${postId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.redirected) {
+          console.log("DELETED WOW");
+          window.location.href = response.url;
+        } else {
+          console.error("Failed to delete post:", response.statusText);
+          alert("Failed to delete the post.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting post:", error);
+        alert("An error occurred while deleting the post.");
+      });
+  };
+</script>
 {% endblock %}

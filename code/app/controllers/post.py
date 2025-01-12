@@ -16,7 +16,15 @@ class PostController:
         return Post.query.get(post_id)
 
     @staticmethod
-    def delete_post(post_id):
+    def delete_post(post_id: int):
         post = Post.query.get(post_id)
         if post:
             post.delete()
+
+    @staticmethod
+    def update_post(post_id: int, title: str, content: str):
+        post = Post.query.get(post_id)
+        if post:
+            post.title = title
+            post.content = content
+            post.save()
