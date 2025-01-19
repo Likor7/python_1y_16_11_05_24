@@ -4,11 +4,6 @@ from .forms import SurveyForm
 
 main_blueprint = Blueprint("main", __name__)
 
-# data = {
-#     "question": "What web framework do u use?",
-#     "fields": ["Flask", "FastAPI", "Django", "ASP.NET"],
-# }
-
 
 @main_blueprint.route("/")
 def index():
