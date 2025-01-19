@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ form.question.label }}</title>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <!-- url_for() -->
+    <form
+      action="/poll"
+      method="POST"
+      style="display: flex; flex-direction: column"
+    >
+      {{ form.hidden_tag() }}
+
+      <h1>{{ form.question.label }}</h1>
+      {{ form.question() }} {{ form.submit() }}
+    </form>
+  </body>
+</html>

@@ -1,15 +1,15 @@
-1. Використання База даних для відповідей (SQLAlchemy -> SQLite)
+1. Використання База даних для відповідей (SQLAlchemy -> SQLite) | Done
 
    id - UserInfo - Question - Answer
 
-2. Абстрагованішу структуру
+2. Абстрагованішу структуру | Done
 
 ```
     app
         - __init__.py
         - models.py
         - controllers.py
-        - view.py
+        - views.py
         -  | templates
             - greeting.html
             - index.html
@@ -22,4 +22,4 @@
 
 4. Використання всіх можливостей flask (url_for)
 
-5. Flask_WTForms - використання
+5. Flask_WTForms - використання | Done
